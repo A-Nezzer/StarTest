@@ -1,6 +1,8 @@
 # How to Run
 
 ```bash
+download zip file of code
+open terminal in folder
 npm install
 npm run dev
 ```
