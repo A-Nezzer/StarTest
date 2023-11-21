@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { GUI } from 'dat.gui'
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer'
+import { radians } from 'three/examples/jsm/nodes/shadernode/ShaderNodeBaseElements'
 
 const scene = new THREE.Scene()
 
@@ -50,6 +51,12 @@ bsc5dat.onreadystatechange = function () {
             let star: Star = {
                 id: Number(row.slice(0, 4)),
                 name: row.slice(4, 14).trim(),
+                rHour: Number(row.slice(60, 62)),
+                rMinute: Number(row.slice(62, 64)),
+                rSecond: Number(row.slice(64, 68)),
+                dec: Number(row.slice(68,71)),
+                dMinute: Number(row.slice(71, 73)),
+                dSecond: Number(row.slice(73, 75)),
                 gLon: Number(row.slice(90, 96)),
                 gLat: Number(row.slice(96, 102)),
                 mag: Number(row.slice(102, 107)),
@@ -58,11 +65,14 @@ bsc5dat.onreadystatechange = function () {
             }
 
             stars[star.id] = star
-
+            "((90 - star.gLat) / 180) * Math.PI,"
+            "(star.gLon / 180) * Math.PI"
+            "((star.rHour * 15)+(star.rMinute * (15/60))+(star.rSecond * (15/3600))) / 180 * Math.PI,"
+            "(90-star.dec)"
             star.v = new THREE.Vector3().setFromSphericalCoords(
                 100,
-                ((90 - star.gLat) / 180) * Math.PI,
-                (star.gLon / 180) * Math.PI
+                THREE.MathUtils.degToRad((90-star.dec)),
+                THREE.MathUtils.degToRad((star.rHour * 15)+(star.rMinute * (15/60))+(star.rSecond * (15/3600)))
             )
 
             positions.push(star.v.x)
