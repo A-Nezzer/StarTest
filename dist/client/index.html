@@ -31,6 +31,11 @@
 <div id="horoscope-container">
     <h2>What is a Horoscope?</h2>
     <p>A horoscope is a forecast of a person's future, typically including details about their character and circumstances, based on the positions of celestial bodies such as planets and stars at the time of their birth.</p>
+    <label for="dateSelector">Select a date:</label>
+    <input type="date" id="dateSelector" onchange="searchCSV()">
+
+    <p>RA: <span id="raValue"></span></p>
+    <p>DEC: <span id="decValue"></span></p>
 </div>
 <div id="starfield-container">
     <iframe src="./stars.html" style="border:1px solid;width:100%;height:500px"></iframe>
