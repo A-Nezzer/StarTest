@@ -71,7 +71,7 @@ bsc5dat.onreadystatechange = function () {
             "(90-star.dec)"
             star.v = new THREE.Vector3().setFromSphericalCoords(
                 100,
-                THREE.MathUtils.degToRad((90-star.dec)),
+                THREE.MathUtils.degToRad((90-(star.dec + star.dMinute/60 + star.dSecond/3600))),
                 THREE.MathUtils.degToRad((star.rHour * 15)+(star.rMinute * (15/60))+(star.rSecond * (15/3600)))
             )
 
