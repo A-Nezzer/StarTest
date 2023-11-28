@@ -58,8 +58,8 @@ b9kcsv.onreadystatechange = function () {
             sunsb9k[sun.id] = sun
             sun.v = new THREE.Vector3().setFromSphericalCoords(
                 100,
-                THREE.MathUtils.degToRad(90 - sun.gLon),
-                THREE.MathUtils.degToRad(sun.gLat)
+                THREE.MathUtils.degToRad(90 - sun.gLat),
+                THREE.MathUtils.degToRad(sun.gLon)
             )
             positions.push(sun.v.x)
             positions.push(sun.v.y)
@@ -112,8 +112,8 @@ bsc5dat.onreadystatechange = function () {
             stars[star.id] = star
             star.v = new THREE.Vector3().setFromSphericalCoords(
                 100,
-                THREE.MathUtils.degToRad(90 - star.gLon),
-                THREE.MathUtils.degToRad(star.gLat)
+                THREE.MathUtils.degToRad(90 - star.gLat),
+                THREE.MathUtils.degToRad(star.gLon)
             )
 
             positions.push(star.v.x)
