@@ -45,15 +45,46 @@ b9kcsv.onreadystatechange = function () {
         const color = new THREE.Color()
         const sizes = new Array()
 
-        let sunb9k: Star = {
-            id: 9999,
-            name: 'Sun',
-            gLon: Number(row.slice(90, 96)),
-            gLat: Number(row.slice(96, 102)),
-            mag: -26.74,
-            spectralClass: 'G',
-            v: new THREE.Vector3(),
+        sunb9kData.forEach((day) => {
+            let sun: Star = {
+                id: 9999,
+                name: 'Sun',
+                gLon: Number(day.slice(15, 24)),
+                gLat: Number(day.slice(27, 36)),
+                mag: -26.74,
+                spectralClass: 'G',
+                v: new THREE.Vector3(),
+            }
+            sunsb9k[sun.id] = sun
+            sun.v = new THREE.Vector3().setFromSphericalCoords(
+                100,
+                THREE.MathUtils.degToRad(90 - sun.gLon),
+                THREE.MathUtils.degToRad(sun.gLat)
+            )
+            positions.push(sun.v.x)
+            positions.push(sun.v.y)
+            positions.push(sun.v.z)
+            color.setHex(0xfcffb5)
+
+            const s = (sun.mag * 26) / 255 + 0.18
+            sizes.push(s)
+            colors.push(color.r, color.g, color.b, s)
+        })
+        const sunsGeometry = new THREE.BufferGeometry()
+        sunsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
+        sunsGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 4))
+        sunsGeometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1))
+
+        const sunsMaterial = new THREE.ShaderMaterial({
+            vertexShader: vertexShader(),
+            fragmentShader: fragmentShader(),
+            transparent: true,
+        })
+        const points = new THREE.Points(sunsGeometry, sunsMaterial)
+        scene.add(points)
+    }
 }
+b9kcsv.send()
 
 const stars: { [id: number]: Star } = {}
 //bsc5.dat @ http://tdc-www.harvard.edu/catalogs/bsc5.readme
@@ -71,7 +102,7 @@ bsc5dat.onreadystatechange = function () {
             let star: Star = {
                 id: Number(row.slice(0, 4)),
                 name: row.slice(4, 14).trim(),
-                gLon: Number(row.slice(90, 96)),
+                gLon: Number(row.slice(14, 96)),
                 gLat: Number(row.slice(96, 102)),
                 mag: Number(row.slice(102, 107)),
                 spectralClass: row.slice(129, 130),
