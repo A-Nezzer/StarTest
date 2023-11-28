@@ -51,6 +51,8 @@ bsc5dat.onreadystatechange = function () {
             let star: Star = {
                 id: Number(row.slice(0, 4)),
                 name: row.slice(4, 14).trim(),
+                RA: Number(row.slice(197, 206)),
+                Declin: Number(row.slice(206, 215)),
                 rHour: Number(row.slice(60, 62)),
                 rMinute: Number(row.slice(62, 64)),
                 rSecond: Number(row.slice(64, 68)),
@@ -71,8 +73,8 @@ bsc5dat.onreadystatechange = function () {
             "(90-star.dec)"
             star.v = new THREE.Vector3().setFromSphericalCoords(
                 100,
-                THREE.MathUtils.degToRad((90-(star.dec + star.dMinute/60 + star.dSecond/3600))),
-                THREE.MathUtils.degToRad((star.rHour * 15)+(star.rMinute * (15/60))+(star.rSecond * (15/3600)))
+                THREE.MathUtils.degToRad((90-(star.Declin + star.dec + star.dMinute/60 + star.dSecond/3600))),
+                THREE.MathUtils.degToRad(star.RA + (star.rHour * 15) + (star.rMinute * (15/60)) + (star.rSecond * (15/3600)))
             )
 
             positions.push(star.v.x)

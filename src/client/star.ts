@@ -1,6 +1,8 @@
 interface Star {
     id: number
     name: string
+    RA: number
+    Declin: number
     rHour: number
     rMinute: number
     rSecond: number
