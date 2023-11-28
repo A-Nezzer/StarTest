@@ -133,63 +133,78 @@ bsc5dat.onreadystatechange = function () {
         scene.add(points)
 
         // load constellationlines
-        const constellationLinesDat = new XMLHttpRequest()
-        constellationLinesDat.open('GET', '/data/ConstellationLines.dat')
+        // load constellation data
+        const constellationLinesDat = new XMLHttpRequest();
+        constellationLinesDat.open('GET', '/data/ConstellationLines.dat');
         constellationLinesDat.onreadystatechange = function () {
             if (constellationLinesDat.readyState === 4) {
-                const constellationLinesData = constellationLinesDat.responseText.split('\n')
+                const constellationLinesData = constellationLinesDat.responseText.split('\n');
                 constellationLinesData.forEach((row) => {
                     if (!row.startsWith('#') && row.length > 1) {
-                        const rowData = row.split(/[ ,]+/)
-                        var points: THREE.Vector3[] = []
-                        for (let i = 0; i < rowData.length - 2; i++) {
-                            let starId = parseInt(rowData[i + 2].trim())
-                            if (starId in stars) {
-                                const star: Star = stars[starId]
-                                points.push(star.v)
+                        const rowData = row.split(/[ ,]+/);
+                        var points = [];
+                        var lineColor = 0x008888; // Default color is green
 
-                                var starDiv = document.createElement('div')
-                                starDiv.className = 'starLabel'
-                                starDiv.textContent = star.name.substr(0, star.name.length - 3)
-                                var starLabel = new CSS2DObject(starDiv)
-                                starLabel.position.set(star.v.x, star.v.y, star.v.z)
-                                starLabel.userData.type = 'starName'
-                                scene.add(starLabel)
+                        // Check for additional data (t or f) after stars data
+                        if (rowData.length > 2) {
+                            var additionalData = rowData[rowData.length - 1].trim();
+                            if (additionalData.toLowerCase() === 't') {
+                                lineColor = 0xff0000; // Change color to red if 't' is present
+                            } else if (additionalData.toLowerCase() === 'f') {
+                                // You can add additional conditions for other cases
+                                lineColor = 0x008888; // Default to green if 'f' is present
                             }
                         }
+
+                        for (let i = 0; i < rowData.length - 2; i++) {
+                            let starId = parseInt(rowData[i + 2].trim());
+                            if (starId in stars) {
+                                const star = stars[starId];
+                                points.push(star.v);
+
+                                // Create star label
+                                var starDiv = document.createElement('div');
+                                starDiv.className = 'starLabel';
+                                starDiv.textContent = star.name.substr(0, star.name.length - 3);
+                                var starLabel = new CSS2DObject(starDiv);
+                                starLabel.position.set(star.v.x, star.v.y, star.v.z);
+                                starLabel.userData.type = 'starName';
+                                scene.add(starLabel);
+                            }
+                        }
+
                         const constellationGeometry = new THREE.BufferGeometry().setFromPoints(
                             points
-                        )
+                        );
                         const constellationMaterial = new THREE.LineBasicMaterial({
-                            color: 0x008888,
-                        })
+                            color: lineColor, // Use the determined color
+                        });
                         const constellationLine = new THREE.Line(
                             constellationGeometry,
                             constellationMaterial
-                        )
-                        constellationLine.userData.type = 'constellationLine'
-                        scene.add(constellationLine)
+                        );
+                        constellationLine.userData.type = 'constellationLine';
+                        scene.add(constellationLine);
 
-                        //constellation label
-                        let constellationLineBox: THREE.Box3 = new THREE.Box3().setFromObject(
-                            constellationLine
-                        )
-                        const center = new THREE.Vector3()
-                        constellationLineBox.getCenter(center)
-                        var constellationDiv = document.createElement('div')
-                        constellationDiv.className = 'constellationLabel'
-                        constellationDiv.textContent = rowData[0]
-                        var constellationLabel = new CSS2DObject(constellationDiv)
-                        constellationLabel.position.set(center.x, center.y, center.z)
-                        constellationLabel.userData.type = 'constellationName'
-                        scene.add(constellationLabel)
+                        // Create constellation label
+                        let constellationLineBox = new THREE.Box3().setFromObject(constellationLine);
+                        const center = new THREE.Vector3();
+                        constellationLineBox.getCenter(center);
+                        var constellationDiv = document.createElement('div');
+                        constellationDiv.className = 'constellationLabel';
+                        constellationDiv.textContent = rowData[0];
+                        var constellationLabel = new CSS2DObject(constellationDiv);
+                        constellationLabel.position.set(center.x, center.y, center.z);
+                        constellationLabel.userData.type = 'constellationName';
+                        scene.add(constellationLabel);
                     }
-                })
-                scene.rotation.x = 0.5
-                scene.rotation.z = 1.0
+                });
+                scene.rotation.x = 0.5;
+                scene.rotation.z = 1.0;
             }
-        }
-        constellationLinesDat.send()
+        };
+        constellationLinesDat.send();
+
     }
 }
 bsc5dat.send()
