@@ -40,10 +40,10 @@ b9kcsv.open('GET', '/data/Solar_data/b9k.csv')
 b9kcsv.onreadystatechange = function () {
     if (b9kcsv.readyState === 4) {
         const sunb9kData = b9kcsv.responseText.split('\n')
-        const positions = new Array()
-        const colors = new Array()
-        const color = new THREE.Color()
-        const sizes = new Array()
+        const sunsPositions = new Array()
+        const sunsColors = new Array()
+        const sunsColor = new THREE.Color()
+        const sunsSizes = new Array()
 
         sunb9kData.forEach((day) => {
             let sun: Star = {
@@ -61,27 +61,27 @@ b9kcsv.onreadystatechange = function () {
                 THREE.MathUtils.degToRad(90 - sun.gLat),
                 THREE.MathUtils.degToRad(sun.gLon)
             )
-            positions.push(sun.v.x)
-            positions.push(sun.v.y)
-            positions.push(sun.v.z)
-            color.setHex(0xfcffb5)
+            sunsPositions.push(sun.v.x)
+            sunsPositions.push(sun.v.y)
+            sunsPositions.push(sun.v.z)
+            sunsColor.setHex(0xfcffb5)
 
             const s = (sun.mag * 26) / 255 + 0.18
-            sizes.push(s)
-            colors.push(color.r, color.g, color.b, s)
+            sunsSizes.push(s)
+            sunsColors.push(sunsColor.r, sunsColor.g, sunsColor.b, s)
         })
         const sunsGeometry = new THREE.BufferGeometry()
-        sunsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
-        sunsGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 4))
-        sunsGeometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1))
+        sunsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(sunsPositions, 3))
+        sunsGeometry.setAttribute('color', new THREE.Float32BufferAttribute(sunsColors, 4))
+        sunsGeometry.setAttribute('size', new THREE.Float32BufferAttribute(sunsSizes, 1))
 
         const sunsMaterial = new THREE.ShaderMaterial({
             vertexShader: vertexShader(),
             fragmentShader: fragmentShader(),
             transparent: true,
         })
-        const points = new THREE.Points(sunsGeometry, sunsMaterial)
-        scene.add(points)
+        const sunsPoints = new THREE.Points(sunsGeometry, sunsMaterial)
+        scene.add(sunsPoints)
     }
 }
 b9kcsv.send()
