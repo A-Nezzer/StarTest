@@ -4,10 +4,11 @@
 <head>
     <title>Star Fields: Horoscopes and More</title>
     <link href="https://fonts.googleapis.com/css2?family=Neuton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Palanquin+Dark&family=Voltaire&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
+<body style="height:100%; width:100%; overflow:auto;">
 
 <ul id='nav bar'>
     <li><a href="#home">Home</a></li>
@@ -21,17 +22,17 @@
     <p>A horoscope is a forecast of a person's future, typically including details about their character and circumstances, based on the positions of celestial bodies such as planets and stars at the time of their birth.</p>
 
     <form id="dateForm">
-        <label for="eraSelector">Select Era:</label>
+        <label>Select Date: </label>
+        <input type="date" id="datepicker" name="datepicker">
         <select id="eraSelector">
             <option value="AD">AD</option>
             <option value="BC">BC</option>
         </select>
-        <br>
-        <label for="datepicker">Select a Date:</label>
-        <input type="date" id="datepicker" name="datepicker">
+
         <br>
         <button type="button" onclick="getDateValues()">Submit</button>
         <p id="result"></p>
+
     </form>
 
     <script>
