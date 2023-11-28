@@ -1,0 +1,54 @@
+body {
+  overflow: hidden;
+  margin: 10px;
+  font-family: 'Neuton', serif;
+  font-size: larger;
+  background-color: #0c1c3d;
+  color: #949498;
+  letter-spacing: 0.1em;
+}
+
+.starLabel {
+  color: #888888;
+  font-family: monospace;
+  color: rgba(131, 255, 131, 0.52);
+  pointer-events: none;
+  font-size: 11px;
+}
+.constellationLabel {
+  color: #888888;
+  font-family: monospace;
+  color: rgba(251, 255, 4, 0.89);
+  pointer-events: none;
+  font-size: 11px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+
+  .center {
+    text-align-last: center;
+  }
+  p {
+    margin: 305px;
+  }

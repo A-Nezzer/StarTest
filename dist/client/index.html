@@ -3,33 +3,21 @@
 
 <head>
     <title>Star Fields: Horoscopes and More</title>
-    <style>
-        body {
-            overflow: hidden;
-            margin: 0px;
-        }
-
-        .starLabel {
-            color: #888888;
-            font-family: monospace;
-            color: rgba(131, 255, 131, 0.52);
-            pointer-events: none;
-            font-size: 11px;
-        }
-        .constellationLabel {
-            color: #888888;
-            font-family: monospace;
-            color: rgba(251, 255, 4, 0.89);
-            pointer-events: none;
-            font-size: 11px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Neuton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
 
+<ul id='nav bar'>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#news">Info</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li style="float:right"><a class="active" href="#about">About</a></li>
+</ul>
+
 <div id="horoscope-container">
-    <h2>What is a Horoscope?</h2>
+    <h2 style = "text-align:center">Starfields</h2>
     <p>A horoscope is a forecast of a person's future, typically including details about their character and circumstances, based on the positions of celestial bodies such as planets and stars at the time of their birth.</p>
     <label for="dateSelector">Select a date:</label>
     <input type="date" id="dateSelector" onchange="searchCSV()">
@@ -39,6 +27,11 @@
 </div>
 <div id="starfield-container">
     <iframe src="./stars.html" style="border:1px solid;width:100%;height:500px"></iframe>
+</div>
+
+<div id='bottom information text'>
+    <h2 style = "text-align: center">What are horoscopes astonomically?</h2>
+    <p>One's horoscope depends on the constellation which astronomical bodies appear to lie in front of from Earth's point of reference. Most generally, when someone asks about your "sign," they are asking for your sun sign, or the constellation in which the sun lies in front of.</p>
 </div>
 </body>
 
