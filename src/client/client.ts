@@ -34,8 +34,28 @@ function onWindowResize() {
     render()
 }
 
-const stars: { [id: number]: Star } = {}
+const sunsb9k: { [id: number]: Star } = {}
+const b9kcsv = new XMLHttpRequest()
+b9kcsv.open('GET', '/data/Solar_data/b9k.csv')
+b9kcsv.onreadystatechange = function () {
+    if (b9kcsv.readyState === 4) {
+        const sunb9kData = b9kcsv.responseText.split('\n')
+        const positions = new Array()
+        const colors = new Array()
+        const color = new THREE.Color()
+        const sizes = new Array()
 
+        let sunb9k: Star = {
+            id: 9999,
+            name: 'Sun',
+            gLon: Number(row.slice(90, 96)),
+            gLat: Number(row.slice(96, 102)),
+            mag: -26.74,
+            spectralClass: 'G',
+            v: new THREE.Vector3(),
+}
+
+const stars: { [id: number]: Star } = {}
 //bsc5.dat @ http://tdc-www.harvard.edu/catalogs/bsc5.readme
 const bsc5dat = new XMLHttpRequest()
 bsc5dat.open('GET', '/data/bsc5.dat')
@@ -51,14 +71,6 @@ bsc5dat.onreadystatechange = function () {
             let star: Star = {
                 id: Number(row.slice(0, 4)),
                 name: row.slice(4, 14).trim(),
-                RA: Number(row.slice(197, 206)),
-                Declin: Number(row.slice(206, 215)),
-                rHour: Number(row.slice(60, 62)),
-                rMinute: Number(row.slice(62, 64)),
-                rSecond: Number(row.slice(64, 68)),
-                dec: Number(row.slice(68,71)),
-                dMinute: Number(row.slice(71, 73)),
-                dSecond: Number(row.slice(73, 75)),
                 gLon: Number(row.slice(90, 96)),
                 gLat: Number(row.slice(96, 102)),
                 mag: Number(row.slice(102, 107)),
@@ -67,14 +79,10 @@ bsc5dat.onreadystatechange = function () {
             }
 
             stars[star.id] = star
-            "((90 - star.gLat) / 180) * Math.PI,"
-            "(star.gLon / 180) * Math.PI"
-            "((star.rHour * 15)+(star.rMinute * (15/60))+(star.rSecond * (15/3600))) / 180 * Math.PI,"
-            "(90-star.dec)"
             star.v = new THREE.Vector3().setFromSphericalCoords(
                 100,
-                THREE.MathUtils.degToRad((90-(star.Declin + star.dec + star.dMinute/60 + star.dSecond/3600))),
-                THREE.MathUtils.degToRad(star.RA + (star.rHour * 15) + (star.rMinute * (15/60)) + (star.rSecond * (15/3600)))
+                THREE.MathUtils.degToRad(90 - star.gLon),
+                THREE.MathUtils.degToRad(star.gLat)
             )
 
             positions.push(star.v.x)
