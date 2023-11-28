@@ -187,16 +187,18 @@ bsc5dat.onreadystatechange = function () {
                         scene.add(constellationLine);
 
                         // Create constellation label
-                        let constellationLineBox = new THREE.Box3().setFromObject(constellationLine);
-                        const center = new THREE.Vector3();
-                        constellationLineBox.getCenter(center);
-                        var constellationDiv = document.createElement('div');
-                        constellationDiv.className = 'constellationLabel';
-                        constellationDiv.textContent = rowData[0];
-                        var constellationLabel = new CSS2DObject(constellationDiv);
-                        constellationLabel.position.set(center.x, center.y, center.z);
-                        constellationLabel.userData.type = 'constellationName';
-                        scene.add(constellationLabel);
+                        let constellationLineBox: THREE.Box3 = new THREE.Box3().setFromObject(
+                            constellationLine
+                        )
+                        const center = new THREE.Vector3()
+                        constellationLineBox.getCenter(center)
+                        var constellationDiv = document.createElement('div')
+                        constellationDiv.className = 'constellationLabel'
+                        constellationDiv.textContent = rowData[0]
+                        var constellationLabel = new CSS2DObject(constellationDiv)
+                        constellationLabel.position.set(center.x, center.y, center.z)
+                        constellationLabel.userData.type = 'constellationName'
+                        scene.add(constellationLabel)
                     }
                 });
                 scene.rotation.x = 0.5;
