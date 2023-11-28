@@ -102,7 +102,7 @@ bsc5dat.onreadystatechange = function () {
             let star: Star = {
                 id: Number(row.slice(0, 4)),
                 name: row.slice(4, 14).trim(),
-                gLon: Number(row.slice(14, 96)),
+                gLon: Number(row.slice(90, 96)),
                 gLat: Number(row.slice(96, 102)),
                 mag: Number(row.slice(102, 107)),
                 spectralClass: row.slice(129, 130),
