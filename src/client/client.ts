@@ -149,7 +149,7 @@ bsc5dat.onreadystatechange = function () {
                         if (rowData.length > 2) {
                             var additionalData = rowData[rowData.length - 1].trim();
                             if (additionalData.toLowerCase() === 't') {
-                                lineColor = 0xff0000; // Change color to red if 't' is present
+                                lineColor = 0x820000; // Change color to red if 't' is present
                             } else if (additionalData.toLowerCase() === 'f') {
                                 // You can add additional conditions for other cases
                                 lineColor = 0x008888; // Default to green if 'f' is present

@@ -51,6 +51,7 @@ li a:hover {
   }
   #p {
     margin: 305px;
+    color: rgba(255, 0, 0, 0.57);
   }
   select {
     padding: 10px; /* Adjust the padding as needed */
@@ -91,4 +92,28 @@ button {
 h2 {
   font-size: 50px;
   margin: 25px;
+}
+
+#starfield-container {
+  text-align: right;
+  border-radius: 8px;
+  border:1px solid;
+  width:97%;
+  height:750px;
+}
+
+#info-block {
+  padding: 15px;
+  background-color: #f3e8d6;
+  color: #1d1d1f;
+  border-radius: 8px;
+  border:1px solid;
+  width:97%;
+  height:750px;
+
+}
+
+table {
+  background-color: #f3e8d6;
+  color: #1d1d1f;
 }
