@@ -5,53 +5,6 @@ import { GUI } from 'dat.gui'
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer'
 import { radians } from 'three/examples/jsm/nodes/shadernode/ShaderNodeBaseElements'
 
-
-// JavaScript program two find number of days between two given dates
-// A date has day 'd', month 'm' and year 'y'
-// To store number of days in all months from January to Dec.
-let monthDays=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-// This function counts number of leap years before the given date
-function countLeapYears(d)
-{
-    let years = d.y;
-
-    // Check if the current year needs to be considered for the count of leap years or not
-    if (d.m <= 2)
-    {
-        years--;
-    }
-    // An year is a leap year if it is a multiple of 4, multiple of 400 and not a multiple of 100.
-    return Math.floor(years / 4) - Math.floor(years / 100) +
-        Math.floor(years / 400);
-}
-
-// This function returns number of days between two given dates
-function getDifference(dt1,dt2)
-{
-// COUNT TOTAL NUMBER OF DAYS BEFORE FIRST DATE 'dt1'
-    // initialize count using years and day
-    let n1 = dt1.y * 365 + dt1.d;
-    // Add days for months in given date
-    for (let i = 0; i < dt1.m - 1; i++)
-    {
-        n1 += monthDays[i];
-    }
-
-    // Since every leap year is of 366 days, Add a day for every leap year
-    n1 += countLeapYears(dt1);
-
-    // SIMILARLY, COUNT TOTAL NUMBER OF DAYS BEFORE 'dt2'
-    let n2 = dt2.y * 365 + dt2.d;
-    for (let i = 0; i < dt2.m - 1; i++)
-    {
-        n2 += monthDays[i];
-    }
-    n2 += countLeapYears(dt2);
-
-    // return difference between two counts
-    return (n2 - n1);
-}
-
 const scene = new THREE.Scene()
 
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000)
