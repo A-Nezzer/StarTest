@@ -8,7 +8,7 @@ import { radians } from 'three/examples/jsm/nodes/shadernode/ShaderNodeBaseEleme
 const scene = new THREE.Scene()
 
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000)
-camera.position.z = 2
+camera.position.z = 50
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
