@@ -366,8 +366,8 @@ millcsv.onreadystatechange = function () {
         sun = {
             id: 9999,
             name: 'Sun',
-            gLon: parseFloat(sunData[row].slice(15, 24)),
-            gLat: parseFloat(sunData[row].slice(27, 36)),
+            gLon: parseFloat(sunData[row].slice(14, 24)),
+            gLat: parseFloat(sunData[row].slice(26, 36)),
             mag: -26.74,
             spectralClass: 'G',
             v: new THREE.Vector3()
