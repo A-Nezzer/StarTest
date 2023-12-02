@@ -246,15 +246,20 @@ bsc5dat.onreadystatechange = function () {
 }
 bsc5dat.send()
 
-let era = 'a'
-let mill = '1'
-let dateStr = '1000-Dec-31'
+const urlParams = new URLSearchParams(window.location.search);
+let era = urlParams.get('era') || 'a';
+let mill = urlParams.get('mill') || '1';
+let dateStr = urlParams.get('dateStr') || '1000-Dec-31';
 let year = parseInt(dateStr.slice(0, 4))
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 let month = months.indexOf(dateStr.slice(5, 8)) + 1
 let day = parseInt(dateStr.slice(9, 11))
 let stdInterval
 let date
+
+console.log('Era:', era);
+console.log('Mill:', mill);
+console.log('Date String:', dateStr);
 
 if (era == 'a') {
     date = {

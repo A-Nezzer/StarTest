@@ -17,7 +17,7 @@
 </ul>
 
 <div id="horoscope-container">
-    <h2 style = "text-align:center">Starfields</h2>
+    <h2 style="text-align:center">Starfields</h2>
     <p>A horoscope is a forecast of a person's future, typically including details about their character and circumstances, based on the positions of celestial bodies such as planets and stars at the time of their birth.</p>
 
     <form id="dateForm">
@@ -30,25 +30,20 @@
         <label for="datepicker">Select a Date:</label>
         <input type="date" id="datepicker" name="datepicker">
         <br>
-        <button type="button" onclick="getDateValues()">Submit</button>
+        <button type="button" onclick="getDateValuesAndReloadIframe()">Submit</button>
         <p id="result"></p>
     </form>
 
     <script>
-        function getDateValues() {
+        function getDateValuesAndReloadIframe() {
             // Get the selected era from the dropdown
-            const selectedEra = document.getElementById("eraSelector").value;
-
+            const selectedEra = document.getElementById("eraSelector").value.charAt(0).toLowerCase();
             // Get the selected date from the input field
             const selectedDate = document.getElementById("datepicker").value;
-
             // Create a Date object from the selected date string
             const dateObject = new Date(selectedDate);
-
             // Define an array of month names
-            const monthNames = [
-                'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-            ];
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
             // Extract the year, month, and day
             const fullYear = dateObject.getFullYear();
@@ -62,19 +57,23 @@
 
             // Display the result
             document.getElementById("result").innerText = `Selected Era: ${selectedEra}, First Digit of Year: ${firstDigitOfYear}, Formatted Date: ${formattedResult}`;
+
+            // Reload the iframe with the new parameters
+            const iframe = document.getElementById("starfield-iframe");
+            iframe.src = `./stars.html?era=${selectedEra}&dateStr=${formattedResult}&mill=${firstDigitOfYear}`;
         }
     </script>
-
-
 </div>
+
 <div id="starfield-container">
-    <iframe src="./stars.html" style="border:1px solid;width:100%;height:500px"></iframe>
+    <iframe id="starfield-iframe" src="./stars.html" style="border:1px solid;width:100%;height:500px"></iframe>
 </div>
 
 <div id='bottom information text'>
-    <h2 style = "text-align: center">What are horoscopes astonomically?</h2>
+    <h2 style="text-align: center">What are horoscopes astronomically?</h2>
     <p>One's horoscope depends on the constellation which astronomical bodies appear to lie in front of from Earth's point of reference. Most generally, when someone asks about your "sign," they are asking for your sun sign, or the constellation in which the sun lies in front of.</p>
 </div>
+
 </body>
 
 </html>
