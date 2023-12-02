@@ -199,11 +199,12 @@ bsc5dat.onreadystatechange = function () {
 }
 bsc5dat.send()
 
-let era = 'a'
-let mill = '1'
-let dateStr = '1000-Dec-31'
-let year = parseInt(dateStr.slice(0, 4))
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+let today = new Date().toISOString()
+let era = 'a'
+let dateStr = `${today.slice(0, 4)}-${months[parseInt(today.slice(5, 7)) - 1]}-${today.slice(8, 10)}`
+let mill = dateStr.slice(0, 1)
+let year = parseInt(dateStr.slice(0, 4))
 let month = months.indexOf(dateStr.slice(5, 8)) + 1
 let day = parseInt(dateStr.slice(9, 11))
 let stdInterval
@@ -310,7 +311,6 @@ millcsv.onreadystatechange = function () {
     if (millcsv.readyState === 4) {
         let sunData = millcsv.responseText.split('\n')
         let row = sunData.findIndex(element => element.includes(dateStr))
-        console.log(row)
         let sunPos = new Array()
         let sunC = new THREE.Color()
         let sunColor = new Array()
@@ -336,7 +336,7 @@ millcsv.onreadystatechange = function () {
         sunPos.push(sun.v.y)
         sunPos.push(sun.v.z)
         sunC.setHex(0xfcffb5)
-        let sunS = 15
+        let sunS = 20
         sunSize.push(sunS)
         sunColor.push(sunC.r, sunC.g, sunC.b, sunS)
 
