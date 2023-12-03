@@ -1,11 +1,18 @@
 body {
   overflow: hidden;
-  margin: 10px;
+  margin: auto;
   /* font-family: 'Neuton', serif; */
   font-family: 'Palanquin Dark', sans-serif;
   font-size: larger;
   background-color: #0c1c3d;
   color: #d8d8dc;
+}
+
+.full-width {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .starLabel {
@@ -99,22 +106,39 @@ h2 {
   justify-content: center;
   border-radius: 3px;
   border:1px solid;
-  width:100%;
+
+  margin:auto;
+  width:95%;
   height:750px;
 }
 
 #info-block {
   padding: 15px;
-  background-color: #f3e8d6;
-  color: #1d1d1f;
-  border-radius: 8px;
-  border:1px solid;
-  width:97%;
-  height:750px;
+  margin-top: 45px;
+  border-style: solid;
+  border-radius: 2px;
+  border-width: 2px;
+  border-color: aliceblue;
 
+}
+
+#bottom-information-text {
+  padding: 15px;
+  margin: auto;
+
+  margin-top: 45px;
+  border-style: solid;
+  border-radius: 2px;
+  border-width: 2px;
+  border-color: aliceblue;
+  width:95%;
 }
 
 table {
   background-color: #f3e8d6;
   color: #1d1d1f;
+}
+
+a:link {
+  color: #d8d8dc;
 }
