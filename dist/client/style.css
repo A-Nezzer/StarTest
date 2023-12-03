@@ -39,7 +39,7 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 16px 30px;
   text-decoration: none;
 }
 
@@ -95,10 +95,11 @@ h2 {
 }
 
 #starfield-container {
-  text-align: right;
-  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  border-radius: 3px;
   border:1px solid;
-  width:97%;
+  width:100%;
   height:750px;
 }
 
