@@ -48,7 +48,7 @@ bsc5dat.onreadystatechange = function () {
 
         starData.forEach((row) => {
             let star: Star = {
-                id: Number(row.slice(0, 4)),
+                id: Number(row.slice(0, 5)),
                 name: row.slice(4, 14).trim(),
                 gLon: Number(row.slice(90, 96)),
                 gLat: Number(row.slice(96, 102)),
