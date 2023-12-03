@@ -37,7 +37,7 @@ function onWindowResize() {
 const stars: { [id: number]: Star } = {}
 //bsc5.dat @ http://tdc-www.harvard.edu/catalogs/bsc5.readme
 const bsc5dat = new XMLHttpRequest()
-bsc5dat.open('GET', '/data/bsc5.dat')
+bsc5dat.open('GET', '/data/bsc5_edited.dat')
 bsc5dat.onreadystatechange = function () {
     if (bsc5dat.readyState === 4) {
         const starData = bsc5dat.responseText.split('\n')
@@ -49,11 +49,11 @@ bsc5dat.onreadystatechange = function () {
         starData.forEach((row) => {
             let star: Star = {
                 id: Number(row.slice(0, 5)),
-                name: row.slice(4, 14).trim(),
-                gLon: Number(row.slice(90, 96)),
-                gLat: Number(row.slice(96, 102)),
-                mag: Number(row.slice(102, 107)),
-                spectralClass: row.slice(129, 130),
+                name: row.slice(5, 15).trim(),
+                gLon: Number(row.slice(91, 97)),
+                gLat: Number(row.slice(97, 103)),
+                mag: Number(row.slice(103, 108)),
+                spectralClass: row.slice(130, 131),
                 v: new THREE.Vector3(),
             }
 
