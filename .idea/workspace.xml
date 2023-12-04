@@ -4,25 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
     <list default="true" id="325dfbc9-2392-46dc-bd14-752f7f842c58" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/client/data/ConstellationLines.dat" beforeDir="false" afterPath="$PROJECT_DIR$/dist/client/data/ConstellationLines.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/client/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/client.ts" afterDir="false" />
     </list>
-=======
-    <list default="true" id="325dfbc9-2392-46dc-bd14-752f7f842c58" name="Changes" comment="" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -53,8 +58,8 @@
       <recent name="$PROJECT_DIR$/dist/client/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/dist/client/test" />
       <recent name="$PROJECT_DIR$/dist/client" />
+      <recent name="$PROJECT_DIR$/dist/client/test" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -74,20 +79,11 @@
       <workItem from="1700992215812" duration="261000" />
       <workItem from="1701105157606" duration="562000" />
       <workItem from="1701120215090" duration="451000" />
-<<<<<<< Updated upstream
       <workItem from="1701132704919" duration="285000" />
-<<<<<<< Updated upstream
       <workItem from="1701133329830" duration="5567000" />
       <workItem from="1701139983234" duration="1289000" />
-=======
-<<<<<<< Updated upstream
-      <workItem from="1701133329830" duration="3879000" />
-=======
-=======
-      <workItem from="1701128730892" duration="6311000" />
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+      <workItem from="1701155548740" duration="296000" />
+      <workItem from="1701525018623" duration="4409000" />
     </task>
     <servers />
   </component>

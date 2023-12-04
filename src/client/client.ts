@@ -5,10 +5,57 @@ import { GUI } from 'dat.gui'
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer'
 import { radians } from 'three/examples/jsm/nodes/shadernode/ShaderNodeBaseElements'
 
+
+// JavaScript program two find number of days between two given dates
+// A date has day 'd', month 'm' and year 'y'
+// To store number of days in all months from January to Dec.
+let monthDays=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+// This function counts number of leap years before the given date
+function countLeapYears(d)
+{
+    let years = d.y;
+
+    // Check if the current year needs to be considered for the count of leap years or not
+    if (d.m <= 2)
+    {
+        years--;
+    }
+    // An year is a leap year if it is a multiple of 4, multiple of 400 and not a multiple of 100.
+    return Math.floor(years / 4) - Math.floor(years / 100) +
+        Math.floor(years / 400);
+}
+
+// This function returns number of days between two given dates
+function getDifference(dt1,dt2)
+{
+// COUNT TOTAL NUMBER OF DAYS BEFORE FIRST DATE 'dt1'
+    // initialize count using years and day
+    let n1 = dt1.y * 365 + dt1.d;
+    // Add days for months in given date
+    for (let i = 0; i < dt1.m - 1; i++)
+    {
+        n1 += monthDays[i];
+    }
+
+    // Since every leap year is of 366 days, Add a day for every leap year
+    n1 += countLeapYears(dt1);
+
+    // SIMILARLY, COUNT TOTAL NUMBER OF DAYS BEFORE 'dt2'
+    let n2 = dt2.y * 365 + dt2.d;
+    for (let i = 0; i < dt2.m - 1; i++)
+    {
+        n2 += monthDays[i];
+    }
+    n2 += countLeapYears(dt2);
+
+    // return difference between two counts
+    return (n2 - n1);
+}
+
 const scene = new THREE.Scene()
 
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000)
-camera.position.z = 50
+camera.position.z = 2
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -37,7 +84,7 @@ function onWindowResize() {
 const stars: { [id: number]: Star } = {}
 //bsc5.dat @ http://tdc-www.harvard.edu/catalogs/bsc5.readme
 const bsc5dat = new XMLHttpRequest()
-bsc5dat.open('GET', '/data/bsc5_edited.dat')
+bsc5dat.open('GET', '/data/bsc5.dat')
 bsc5dat.onreadystatechange = function () {
     if (bsc5dat.readyState === 4) {
         const starData = bsc5dat.responseText.split('\n')
@@ -48,12 +95,12 @@ bsc5dat.onreadystatechange = function () {
 
         starData.forEach((row) => {
             let star: Star = {
-                id: Number(row.slice(0, 5)),
-                name: row.slice(5, 15).trim(),
-                gLon: Number(row.slice(91, 97)),
-                gLat: Number(row.slice(97, 103)),
-                mag: Number(row.slice(103, 108)),
-                spectralClass: row.slice(130, 131),
+                id: Number(row.slice(0, 4)),
+                name: row.slice(4, 14).trim(),
+                gLon: Number(row.slice(90, 96)),
+                gLat: Number(row.slice(96, 102)),
+                mag: Number(row.slice(102, 107)),
+                spectralClass: row.slice(129, 130),
                 v: new THREE.Vector3(),
             }
 
@@ -137,7 +184,7 @@ bsc5dat.onreadystatechange = function () {
                         if (rowData.length > 2) {
                             var additionalData = rowData[rowData.length - 1].trim();
                             if (additionalData.toLowerCase() === 't') {
-                                lineColor = 0x820000; // Change color to red if 't' is present
+                                lineColor = 0xff0000; // Change color to red if 't' is present
                             } else if (additionalData.toLowerCase() === 'f') {
                                 // You can add additional conditions for other cases
                                 lineColor = 0x008888; // Default to green if 'f' is present
@@ -199,16 +246,20 @@ bsc5dat.onreadystatechange = function () {
 }
 bsc5dat.send()
 
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-let today = new Date().toISOString()
-let era = 'a'
-let dateStr = `${today.slice(0, 4)}-${months[parseInt(today.slice(5, 7)) - 1]}-${today.slice(8, 10)}`
-let mill = dateStr.slice(0, 1)
+const urlParams = new URLSearchParams(window.location.search);
+let era = urlParams.get('era') || 'a';
+let mill = urlParams.get('mill') || '1';
+let dateStr = urlParams.get('dateStr') || '1000-Dec-31';
 let year = parseInt(dateStr.slice(0, 4))
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 let month = months.indexOf(dateStr.slice(5, 8)) + 1
 let day = parseInt(dateStr.slice(9, 11))
 let stdInterval
 let date
+
+console.log('Era:', era);
+console.log('Mill:', mill);
+console.log('Date String:', dateStr);
 
 if (era == 'a') {
     date = {
@@ -311,6 +362,7 @@ millcsv.onreadystatechange = function () {
     if (millcsv.readyState === 4) {
         let sunData = millcsv.responseText.split('\n')
         let row = sunData.findIndex(element => element.includes(dateStr))
+        console.log(row)
         let sunPos = new Array()
         let sunC = new THREE.Color()
         let sunColor = new Array()
@@ -336,7 +388,7 @@ millcsv.onreadystatechange = function () {
         sunPos.push(sun.v.y)
         sunPos.push(sun.v.z)
         sunC.setHex(0xfcffb5)
-        let sunS = 20
+        let sunS = 15
         sunSize.push(sunS)
         sunColor.push(sunC.r, sunC.g, sunC.b, sunS)
 
