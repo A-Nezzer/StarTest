@@ -30,16 +30,15 @@
             <option value="BC">BC</option>
         </select>
 
-        <button type="button" onclick="getDateValues()">Submit</button>
+        <button type="button" onclick="getDateValuesAndReloadIframe()">Submit</button>
         <p id="result"></p>
 
     </form>
 
     <script>
-        function getDateValues() {
+        function getDateValuesAndReloadIframe() {
             // Get the selected era from the dropdown
-            const selectedEra = document.getElementById("eraSelector").value;
-
+            const selectedEra = document.getElementById("eraSelector").value.charAt(0).toLowerCase();
             // Get the selected date from the input field
             const selectedDate = document.getElementById("datepicker").value;
 
@@ -47,9 +46,7 @@
             const dateObject = new Date(selectedDate);
 
             // Define an array of month names
-            const monthNames = [
-                'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-            ];
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
             // Extract the year, month, and day
             const fullYear = dateObject.getFullYear();
@@ -63,13 +60,18 @@
 
             // Display the result
             document.getElementById("result").innerText = `Selected Era: ${selectedEra}, First Digit of Year: ${firstDigitOfYear}, Formatted Date: ${formattedResult}`;
+
+            // Reload the iframe with the new parameters
+            const iframe = document.getElementById("starfield-iframe");
+            iframe.src = `./stars.html?era=${selectedEra}&dateStr=${formattedResult}&mill=${firstDigitOfYear}`;
+
         }
     </script>
 
 
 </div>
 <div id="starfield-container">
-    <iframe src="./stars.html" style="text-align: center; border-radius: 2px; border:1px solid;width:100%;height:750px"></iframe>
+    <iframe id="starfield-iframe" src="./stars.html" style="border:1px solid;width:100%;height:500px"></iframe>
 </div>
 
 <div id='bottom-information-text'>
