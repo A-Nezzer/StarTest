@@ -202,9 +202,10 @@ bsc5dat.send()
 const urlParams = new URLSearchParams(window.location.search);
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 let today = new Date().toISOString()
-let era = urlParams.get('era') || 'a';
-let dateStr = urlParams.get('dateStr') || '1000-Dec-31';
-let mill = urlParams.get('mill') || '1';
+let todayStr = today.slice(0, 4).concat('-', months[parseInt(today.slice(5, 7)) - 1], '-', today.slice(8, 10))
+let era = urlParams.get('era') || 'a'
+let dateStr = urlParams.get('dateStr') || todayStr
+let mill = urlParams.get('mill') || '2'
 let year = parseInt(dateStr.slice(0, 4))
 let month = months.indexOf(dateStr.slice(5, 8)) + 1
 let day = parseInt(dateStr.slice(9, 11))
@@ -322,7 +323,7 @@ millcsv.onreadystatechange = function () {
         let sunSize = new Array()
 
         sun = {
-            id: 9999,
+            id: 99999,
             name: 'Sun',
             gLon: parseFloat(sunData[row].slice(14, 24)),
             gLat: parseFloat(sunData[row].slice(26, 36)),
