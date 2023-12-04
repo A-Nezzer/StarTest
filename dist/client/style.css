@@ -127,10 +127,8 @@ h2 {
 }
 
 #bottom-information-text {
-  padding: 15px;
-  margin: auto;
-
   margin-top: 45px;
+  margin-bottom: 45px;
   border-style: solid;
   border-radius: 2px;
   border-width: 2px;
