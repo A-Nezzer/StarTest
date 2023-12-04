@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="325dfbc9-2392-46dc-bd14-752f7f842c58" name="Changes" comment="" />
+    <list default="true" id="325dfbc9-2392-46dc-bd14-752f7f842c58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/dist/client/data/zodiac_symbols.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/client/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/client/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/client/info.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/client/info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/client/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/client/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +53,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "ts.external.directory.path": "/Users/aaronnezzer/Documents/GitHub/StarTest/node_modules/typescript/lib",
+    "ts.external.directory.path": "C:\\Users\\ngetc\\Documents\\GitHub\\StarTest\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
