@@ -26,8 +26,8 @@
         <label>Select Date (UTC): </label>
         <input type="date" id="datepicker" name="datepicker">
         <select id="eraSelector">
-            <option value="AD">AD</option>
-            <option value="BC">BC</option>
+            <option value="AD" style='background-color:#0c1c3d'>AD</option>
+            <option value="BC" style='background-color:#0c1c3d'>BC</option>
         </select>
 
         <button type="button" onclick="getDateValuesAndReloadIframe()">Submit</button>
@@ -57,8 +57,6 @@
 
             // Format the result as "era-year-mon-day"
             const formattedResult = `${fullYear}-${monthAcronym}-${day}`;
-
-            // Display the result
             
 
             // Reload the iframe with the new parameters

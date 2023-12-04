@@ -202,62 +202,22 @@ bsc5dat.send()
 const urlParams = new URLSearchParams(window.location.search);
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 let today = new Date().toISOString()
-//console.log(today)
 let todayStr = today.slice(0, 4).concat('-', months[parseInt(today.slice(5, 7)) - 1], '-', today.slice(8, 10))
 let era = urlParams.get('era') || 'a'
 let dateStr = urlParams.get('dateStr') || todayStr
-let mill = urlParams.get('mill') || '2'
-let year = parseInt(dateStr.slice(0, 4))
-let month = months.indexOf(dateStr.slice(5, 8)) + 1
-let day = parseInt(dateStr.slice(9, 11))
-let stdInterval
+let mill = urlParams.get('mill') || todayStr.slice(0, 1)
 let date
-
-//console.log('Era:', era);
-//console.log('Mill:', mill);
-//console.log('Date String:', dateStr);
-
-if (era == 'a') {
-    date = {
-        y: year,
-        m: month,
-        d: day
-    }
-} else {
-    date = {
-        y: 10000 - year,
-        m: month,
-        d: day
-    }
-}
-
 let row
-let start
-let startYr
-if (era == 'a') {
-    startYr = Math.floor(year / 1000) * 1000
-} else {
-    startYr = Math.floor((10000 - year) / 1000) * 1000
-}
 
-if (stdInterval == true) {
-    start = {
-        y: startYr,
-        m: 1,
-        d: 1
-    }
-} else {
-    start = {
-        y: startYr,
-        m: 3,
-        d: 20
-    }
+if (mill == 'N') {
+    mill = todayStr.slice(0, 1)
 }
-//row = getDifference(start, date)
+if (dateStr.slice(0, 3) == 'NaN') {
+    dateStr = todayStr
+}
 
 const millcsv = new XMLHttpRequest()
 if (era == 'a') {
-    stdInterval = true
     if (mill == '0') {
         millcsv.open('GET', '/data/Solar_data/a0k.csv')
     } else if (mill == '1') {
@@ -281,34 +241,24 @@ if (era == 'a') {
     }
 } else {
     if (mill == '9') {
-        stdInterval = false
         millcsv.open('GET', '/data/Solar_data/b9k.csv')
     } else if (mill == '8') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b8k.csv')
     } else if (mill == '7') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b7k.csv')
     } else if (mill == '6') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b6k.csv')
     } else if (mill == '5') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b5k.csv')
     } else if (mill == '4') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b4k.csv')
     } else if (mill == '3') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b3k.csv')
     } else if (mill == '2') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b2k.csv')
     } else if (mill == '1') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b1k.csv')
     } else if (mill == '0') {
-        stdInterval = true
         millcsv.open('GET', '/data/Solar_data/b0k.csv')
     }
 }
