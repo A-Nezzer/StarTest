@@ -23,7 +23,7 @@
     </p>
 
     <form style = "text-align: center" id="dateForm">
-        <label>Select Date: </label>
+        <label>Select Date (UTC): </label>
         <input type="date" id="datepicker" name="datepicker">
         <select id="eraSelector">
             <option value="AD">AD</option>
@@ -53,7 +53,7 @@
             const firstDigitOfYear = fullYear.toString().charAt(0); // or use .slice(0, 1)
             const monthIndex = dateObject.getMonth();
             const monthAcronym = monthNames[monthIndex];
-            const day = dateObject.getDate().toString().padStart(2, '0');
+            const day = (dateObject.getDate() + 1).toString().padStart(2, '0');
 
             // Format the result as "era-year-mon-day"
             const formattedResult = `${fullYear}-${monthAcronym}-${day}`;

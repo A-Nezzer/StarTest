@@ -202,6 +202,7 @@ bsc5dat.send()
 const urlParams = new URLSearchParams(window.location.search);
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 let today = new Date().toISOString()
+//console.log(today)
 let todayStr = today.slice(0, 4).concat('-', months[parseInt(today.slice(5, 7)) - 1], '-', today.slice(8, 10))
 let era = urlParams.get('era') || 'a'
 let dateStr = urlParams.get('dateStr') || todayStr
@@ -212,9 +213,9 @@ let day = parseInt(dateStr.slice(9, 11))
 let stdInterval
 let date
 
-console.log('Era:', era);
-console.log('Mill:', mill);
-console.log('Date String:', dateStr);
+//console.log('Era:', era);
+//console.log('Mill:', mill);
+//console.log('Date String:', dateStr);
 
 if (era == 'a') {
     date = {
