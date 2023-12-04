@@ -105,7 +105,7 @@ h2 {
   margin: 25px;
 }
 
-#starfield-container {
+/*#starfield-container {
   display: flex;
   justify-content: center;
   border-radius: 3px;
@@ -114,7 +114,7 @@ h2 {
   margin:auto;
   width:95%;
   height:80%;
-}
+}*/
 
 #info-block {
   padding: 15px;
@@ -136,7 +136,10 @@ h2 {
   width:95%;
 }
 
-
 a:link {
   color: #d8d8dc;
+}
+
+html {
+  height: 100%;
 }
